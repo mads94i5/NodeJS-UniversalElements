@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { db } from "../scripts/mysql.js";
+import { mysqlDB } from "../scripts/mysql.js";
 import { sendEmail } from "../scripts/nodemailer.js";
 import * as jwtOptions from "../scripts/jwt.js";
 
@@ -39,7 +39,7 @@ router.post("/auth/register", (req, res) => {
         }
         user.password = hashedPassword;
 
-        db.query("SELECT username, email FROM users WHERE username = ? OR email = ?", [user.username, user.email], (err, results) => {
+        mysqlDB.query("SELECT username, email FROM users WHERE username = ? OR email = ?", [user.username, user.email], (err, results) => {
             if (err) {
                 console.error("Error checking for duplicate username or email:", err);
                 return res.status(500).json({ error: "Registration failed" });
@@ -55,7 +55,7 @@ router.post("/auth/register", (req, res) => {
                 return res.status(400).json({ error: "Email is already in use" });
             }
 
-            db.query("INSERT INTO users SET ?", user, (err, result) => {
+            mysqlDB.query("INSERT INTO users SET ?", user, (err, result) => {
                 if (err) {
                     console.error("Error registering user:", err);
                     return res.status(500).json({ error: "Registration failed" });
@@ -71,7 +71,7 @@ router.post("/auth/register", (req, res) => {
 router.post("/auth/login", (req, res) => {
     const { username, password } = req.body;
 
-    db.query("SELECT * FROM users WHERE username = ?", username, (err, results) => {
+    mysqlDB.query("SELECT * FROM users WHERE username = ?", username, (err, results) => {
         if (err) {
             console.error("Error checking user:", err);
             return res.status(500).json({ error: "Login failed" });
@@ -91,7 +91,7 @@ router.post("/auth/login", (req, res) => {
 
             const refreshToken = jwt.sign({ userId: user.id, role: user.role }, jwtOptions.jwtRefreshSecret);
             
-            db.query("UPDATE users SET refreshToken = ? WHERE id = ?", [refreshToken, user.id], (err) => {
+            mysqlDB.query("UPDATE users SET refreshToken = ? WHERE id = ?", [refreshToken, user.id], (err) => {
                 if (err) {
                     console.error("Error storing refresh token:", err);
                     return res.status(500).json({ error: "Login failed" });
@@ -120,7 +120,7 @@ router.post("/auth/refresh", (req, res) => {
         if (accessToken) {
             jwt.verify(accessToken, jwtOptions.jwtAccessSecret, (err) => {
                 if (err) {
-                    db.query("SELECT refreshToken FROM users WHERE id = ? AND refreshToken = ?", [decoded.userId, refreshToken], (err, results) => {
+                    mysqlDB.query("SELECT refreshToken FROM users WHERE id = ? AND refreshToken = ?", [decoded.userId, refreshToken], (err, results) => {
                         if (err) {
                             console.error("Error checking refresh token in the database:", err);
                             return res.status(500).json({ error: "Database error" });
@@ -148,7 +148,7 @@ router.post("/auth/logout", (req, res) => {
     res.clearCookie("token");
     const refreshToken = req.cookies.refreshToken;
     if (refreshToken) {
-        db.query("UPDATE users SET refreshToken = NULL WHERE refreshToken = ?", [refreshToken], (err) => {
+        mysqlDB.query("UPDATE users SET refreshToken = NULL WHERE refreshToken = ?", [refreshToken], (err) => {
             if (err) {
                 console.error("Error deleting refresh token:", err);
             }

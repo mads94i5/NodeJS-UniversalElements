@@ -1,8 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
-import cors from "cors";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import { corsOptions } from "./scripts/cors.js";
 import { endDatabaseConnection } from "./scripts/mysql.js";
 import * as rateLimiters from "./scripts/rateLimiters.js";
@@ -13,7 +13,10 @@ app.use(cors(corsOptions));
 app.use("*", rateLimiters.main);
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.static("public"));
+//app.use(express.static("public"));
+
+import elementsRouter from "./routers/elementsRouter.js";
+app.use(elementsRouter); 
 
 import usersRouter from "./routers/usersRouter.js";
 app.use(usersRouter);

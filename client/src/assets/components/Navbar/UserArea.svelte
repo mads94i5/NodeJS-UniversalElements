@@ -23,14 +23,14 @@
 {#if userIsLoggedIn}
     <div class="user-area">
         {#if isAdmin}
-            <Link to="/admin"><button class="btn btn-primary"><strong>Admin</strong></button></Link>
+            <Link to="/admin"><button class="btn btn-user btn-primary"><strong>Admin</strong></button></Link>
         {/if}
-        <Link to="/profile"><button class="btn btn-primary"><strong>Profile</strong></button></Link>
-        <Link to="/logout"><button class="btn btn-primary"><strong>Logout</strong></button></Link>
+        <Link to="/profile"><button class="btn btn-user btn-primary"><strong>Profile</strong></button></Link>
+        <Link to="/logout"><button class="btn btn-user btn-primary"><strong>Logout</strong></button></Link>
     </div>
 {:else}
     <div class="user-area">
-        <Link to="/register"><button class="btn btn-primary"><strong>Register</strong></button></Link>
-        <Link to="/login"><button class="btn btn-primary"><strong>Login</strong></button></Link>
+        <Link to="/register"><button class="btn btn-user btn-primary"><strong>Register</strong></button></Link>
+        <Link to="/login"><button class="btn btn-user btn-primary"><strong>Login</strong></button></Link>
     </div>
 {/if}

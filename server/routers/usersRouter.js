@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { db } from "../scripts/mysql.js";
+import { mysqlDB } from "../scripts/mysql.js";
 import { isAdmin, isLoggedIn } from "../scripts/auth.js";
 import bcrypt from "bcrypt";
 
 const router = Router();
 
 router.get("/api/users", isAdmin, (req, res) => {
-    db.query("SELECT * FROM users", (err, results) => {
+    mysqlDB.query("SELECT * FROM users", (err, results) => {
         if (err) {
             console.error("Error fetching users:", err);
             return res.status(500).json({ error: "Error fetching users" });
@@ -24,7 +24,7 @@ router.get("/api/users/:id", isLoggedIn, (req, res) => {
         return res.status(403).json({ error: "Permission denied" });
     }
 
-    db.query("SELECT * FROM users WHERE id = ?", userId, (err, results) => {
+    mysqlDB.query("SELECT * FROM users WHERE id = ?", userId, (err, results) => {
         if (err) {
             console.error("Error fetching user:", err);
             return res.status(500).json({ error: "Error fetching user" });
@@ -47,7 +47,7 @@ router.patch("/api/users/edit/username/:id", isLoggedIn, (req, res) => {
         return res.status(403).json({ error: "Permission denied" });
     }
 
-    db.query("UPDATE users SET username = ? WHERE id = ?", [username, userId], (err) => {
+    mysqlDB.query("UPDATE users SET username = ? WHERE id = ?", [username, userId], (err) => {
         if (err) {
             console.error("Error updating username:", err);
             return res.status(500).json({ error: "Username update failed" });
@@ -65,7 +65,7 @@ router.patch("/api/users/edit/email/:id", isLoggedIn, (req, res) => {
         return res.status(403).json({ error: "Permission denied" });
     }
 
-    db.query("UPDATE users SET email = ? WHERE id = ?", [email, userId], (err) => {
+    mysqlDB.query("UPDATE users SET email = ? WHERE id = ?", [email, userId], (err) => {
         if (err) {
             console.error("Error updating email:", err);
             return res.status(500).json({ error: "Email update failed" });
@@ -89,7 +89,7 @@ router.patch("/api/users/edit/password/:id", isLoggedIn, (req, res) => {
             return res.status(500).json({ error: "Password update failed" });
         }
 
-        db.query("UPDATE users SET password = ? WHERE id = ?", [hashedPassword, userId], (err) => {
+        mysqlDB.query("UPDATE users SET password = ? WHERE id = ?", [hashedPassword, userId], (err) => {
             if (err) {
                 console.error("Error updating password:", err);
                 return res.status(500).json({ error: "Password update failed" });
@@ -104,7 +104,7 @@ router.put("/api/users/:id", isAdmin, (req, res) => {
     const userId = Number(req.params.id);
     const updatedUserData = req.body;
 
-    db.query("UPDATE users SET ? WHERE id = ?", [updatedUserData, userId], (err, results) => {
+    mysqlDB.query("UPDATE users SET ? WHERE id = ?", [updatedUserData, userId], (err, results) => {
         if (err) {
             console.error("Error updating user:", err);
             return res.status(500).json({ error: "Error updating user" });
@@ -125,7 +125,7 @@ router.delete("/api/users/:id", isLoggedIn, (req, res) => {
         return res.status(403).json({ error: "Permission denied" });
     }
 
-    db.query("DELETE FROM users WHERE id = ?", userId, (err, results) => {
+    mysqlDB.query("DELETE FROM users WHERE id = ?", userId, (err, results) => {
         if (err) {
             console.error("Error deleting user:", err);
             return res.status(500).json({ error: "Error deleting user" });

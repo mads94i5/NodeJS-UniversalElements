@@ -5,6 +5,7 @@
     import UserGuard from "../Guards/UserGuard.svelte";
     import AdminGuard from "../Guards/AdminGuard.svelte";
     import Home from "../../pages/Home/Home.svelte";
+    import Elements from "../../pages/Elements/Elements.svelte";
     import Logout from "../Logout/Logout.svelte";
     import Login from "../../pages/Login/Login.svelte";
     import Register from "../../pages/Register/Register.svelte";
@@ -19,11 +20,14 @@
 
 <Router {url}>
     <nav>
-        <Link to="/"><button class="btn btn-primary"><strong>Home</strong></button></Link>
+        <Link to="/"><img src="/assets/images/icon.png" alt="" class="nav-icon"></Link>
+        <Link to="/"><button class="btn btn-nav btn-primary"><strong>Home</strong></button></Link>
+        <Link to="/elements"><button class="btn btn-nav btn-primary"><strong>Elements</strong></button></Link>
         <UserArea />
     </nav>
     <div>
         <Route path="/"><Home /></Route>
+        <Route path="/elements"><Elements /></Route>
         <Route path="/login"><Login /></Route>
         <Route path="/register"><Register /></Route>
         <Route path="/logout"><Logout /></Route>
