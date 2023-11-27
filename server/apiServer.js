@@ -10,10 +10,10 @@ import * as rateLimiters from "./scripts/rateLimiters.js";
 const app = express();
 app.use(helmet())
 app.use(cors(corsOptions));
+app.set('trust proxy', 1);
 app.use("*", rateLimiters.main);
 app.use(cookieParser());
 app.use(express.json());
-//app.use(express.static("public"));
 
 import elementsRouter from "./routers/elementsRouter.js";
 app.use(elementsRouter); 
