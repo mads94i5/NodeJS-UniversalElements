@@ -113,6 +113,13 @@ table {
     border-bottom: 3px solid rgb(48, 49, 136);
 }
 
+tr.white-border {
+    border: 2px solid rgb(219, 219, 219);
+    border-left: 1px solid rgb(219, 219, 219);
+    border-right: 1px solid rgb(219, 219, 219);
+    text-align: center;
+}
+
 th.white-border {
     border: 2px solid rgb(219, 219, 219);
     border-left: 1px solid rgb(219, 219, 219);

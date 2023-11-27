@@ -1,55 +1,73 @@
-# Login Template
+# Universal Elements
 
-This login template site is a mandatory assignment for the NodeJS elective subject at KEA 2023. 
+This project is the exam assignment for the NodeJS elective subject at KEA 2023. 
 It is designed with seperate frontend and backend.
 The frontend uses Svelte+Vite, toasts and svelte-routing
-The backend uses JWT auth system, MySQL database, helmet, bcrypt, cors, ratelimit and nodemailer w/ ethereal.mail on registration.
+The backend uses JWT auth system, MySQL, MongoDB, helmet, bcrypt, cors, ratelimit and nodemailer w/ ethereal.mail.
 It also features the concurrently node module, to start both the frontend and backend with a single npm run command from the root directory.
 
 ## Assignment
 
-Mandatory II
+Both individual and group work is allowed. You still need to understand all the code. Collaborations across electives are also allowed.
 
-Create a fullstack auth system using a web framework.
+Deadline: Check Wiseflow for when the hand-in deadline is. You must submit a full stack project by then but you can still work on your project up until the exam. You will only be evaluated based on the final project. Upload a Git link to your project (PDF) or the code as a zip file (requires an empty PDF first).
 
-Hand-in: Git Link, Fronter
+Scope: There should be enough features that you can talk incessantly for 5-6 minutes while showcasing your product.
 
-Assignment type: Individual
+Hard requirements: You need to fulfill these requirements to pass the exam:
 
-Recommended: Try to hack each other’s local system for security auditing and do code reviews of the security sensitive parts.
+Backend
 
-Deadline: November 12th
+· Use Express
 
-Technical requirements:
+· Use a database (You need access to your database through the terminal and be able to write your own queries to it during the exam). Choose the appropriate database for your project. You are expected to research and make an informed choice.
 
-· Use a web framework.
+· Use Sockets.
 
-· Use a database.
+· Authentication and authorization.
 
-· Email should be sent out with Nodemailer. This can be done through sign up/forgot password/contact us. Only 1 email is required but all the requirements would be nice.
+Frontend
 
-· Add notifications. The project should have at least one. You could use one of these libraries: https://github.com/CodeSeven/toastr https://github.com/kbrgl/svelte-french-toast
+· Plain HTML, template engines or Svelte are okay.
 
-· Backend:
+· Use Fetch.
 
-You need to implement authentication:
+· Use Sockets.
 
-Implement it yourself with Bcrypt, route etc. You could consider a library or a service such as Passport.js, Google SSO, OAuth or Firebase Authenticate.
+· Authentication and authorization.
 
-You need to implement authorization.
+Soft requirements (You should fulfill these too):
 
-Use sessions (easy), JWT (difficult). Good video on how to implement JWT with Express: https://www.youtube.com/watch?v=mbsmsi7l3r4
+You must have a clean code base and your code style should be consistent.
 
-· Frontend:
+You must make an attempt at styling your website. Styling frameworks can be used. User experience is important too.
 
-You need to implement authentication too:
+Bonus:
 
-The minimum requirement is a Login/Sign out component. (Sign up/Forgot password are optional).
+Host your application.
 
-You need to implement authorization here too:
+Hard Requirement:
 
-Protect your routes. If you are using svelte-navigator use private routes so people can’t access pages by changing the URL. You could use this: https://github.com/mefechoel/svelte-navigator/tree/main/example/private-routes
+Whether the project is hosted or not both the project and the product need to be production ready which means that the:
 
-Bonus
+· code shouldn’t be littered with console logs, unused code, unfinished snippets etc.
 
-· Feel free to add a theme to the website, a frontpage and content once logged in.
+· product is legal and conform to GDPR.
+
+Exam: Language: Danish
+
+Be prepared. The project should be up and running.
+
+Demo your exam project (First 5-6 minutes):
+
+Demo means no code but constantly showing features.
+
+Since auth was a part of mandatory II only demo it if it has additional features. Otherwise focus on what is unique to your exam project. Don’t show how to log in or sign up.
+
+I might seem impatient during the demo part but it’s because I use the measured time it takes to demo unique features of the system to place you in a grade category. Expect me to instruct you if the demo sidetracks or is slowed down by explanations. If talking during the demo part means not showcasing features then a silent demo is preferred. A good project would be self-explanatory through its UI / UX. The goal is not to create a stressful exam but for me to create an objective measurement to the grading system.
+
+Discussion: We will talk about your exam project. Code and more.
+
+Live Coding: You will be asked to live code! Either right away if I noticed some things about your project or in the end.
+
+You are not allowed to use snippets or code assisting tools (Copilot etc.) during the exam. IntelliSense is allowed.
