@@ -11,8 +11,8 @@
             positionClass: "toast-bottom-left",
         };
         toastr.info("Retrieving users..");
-        await fetchPostJson(AUTH_URL + "refresh");
         try {
+            await fetchPostJson(AUTH_URL + "refresh");
             const response = await fetchGetJson(API_URL + "users");
             if (response !== undefined) {
                 toastr.success("Retrieved users");

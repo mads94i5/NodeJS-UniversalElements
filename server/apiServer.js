@@ -4,7 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { corsOptions } from "./scripts/cors.js";
-import { endDatabaseConnection } from "./scripts/mysql.js";
+//import { endDatabaseConnection } from "./scripts/mysql.js";
 import * as rateLimiters from "./scripts/rateLimiters.js";
 
 const app = express();
@@ -14,6 +14,7 @@ app.set('trust proxy', 1);
 app.use("*", rateLimiters.main);
 app.use(cookieParser());
 app.use(express.json());
+//app.use(express.static("public"));
 
 import elementsRouter from "./routers/elementsRouter.js";
 app.use(elementsRouter); 
@@ -40,12 +41,12 @@ process.on("uncaughtException", (error) => {
 
 app.on("close", () => {
     console.log("Server is shutting down. Performing cleanup tasks...");
-    endDatabaseConnection();
+    //endDatabaseConnection();
 });
 
 process.on("SIGINT", () => {
     console.log("Received SIGINT. Server is shutting down.");
-    endDatabaseConnection();
+    //endDatabaseConnection();
     server.close(() => {
         console.log("Server is now closed.");
         process.exit(0);
@@ -54,7 +55,7 @@ process.on("SIGINT", () => {
 
 process.on("SIGTERM", () => {
     console.log("Received SIGTERM. Server is shutting down.");
-    endDatabaseConnection();
+    //endDatabaseConnection();
     server.close(() => {
         console.log("Server is now closed.");
         process.exit(0);

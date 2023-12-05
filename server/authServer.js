@@ -17,7 +17,6 @@ app.use("*", rateLimiters.main);
 app.use(authError);
 app.use(cookieParser());
 app.use(express.json());
-//app.use(express.static("public"));
 
 import authRouter from "./routers/authRouter.js";
 app.use(authRouter);

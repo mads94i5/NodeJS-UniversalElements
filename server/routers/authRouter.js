@@ -122,8 +122,18 @@ router.post("/auth/refresh", (req, res) => {
                 if (err) {
                     mysqlDB.query("SELECT refreshToken FROM users WHERE id = ? AND refreshToken = ?", [decoded.userId, refreshToken], (err, results) => {
                         if (err) {
-                            console.error("Error checking refresh token in the database:", err);
-                            return res.status(500).json({ error: "Database error" });
+                            if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+                                mysqlDB.connect((connectionErr) => {
+                                    if (connectionErr) {
+                                        console.error("Error reconnecting to the database:", connectionErr);
+                                    } else {
+                                        console.log("Reconnected to the database.");
+                                    }
+                                });
+                            } else {
+                                console.error("Error checking refresh token in the database:", err);
+                                return res.status(500).json({ error: "Database error" });
+                            }
                         }
 
                         if (results.length > 0) {

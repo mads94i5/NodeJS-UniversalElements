@@ -5,6 +5,19 @@
     import { fetchGetJson, fetchPostJson, fetchPatchJsonFormData } from "../../scripts/fetch.js";
     import { API_URL, AUTH_URL } from "../../scripts/settings.js";
     import toastr from "toastr";
+    import { navigate } from "svelte-routing";
+    import Modal from "../../components/Modal/Modal.svelte";
+
+    let showPopup = false;
+
+    const onShowPopup = (ev) => {
+        showPopup = true;
+    }
+
+    const onPopupClose = (data) => {
+        showPopup = false;
+		console.log(data);
+    }
 
     export let userId;
     let user = [];
@@ -175,6 +188,8 @@
         endEditPassword();
         await getUserInfo();
     }
+
+    function deleteProfile() {}
 </script>
 
 <div class="container">
@@ -269,5 +284,17 @@
                 </form>
             {/if}
         </p>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-2">
+                <p class="text-right"><strong>Delete User:</strong></p>
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger" on:click={onShowPopup}><strong>Delete</strong></button>
+                <Modal open={showPopup} onClosed={(data) => onPopupClose(data)} title="Delete user">
+                    Do you want to delete this user?
+                </Modal>
+            </div>
+        </div>
     </div>
 </div>

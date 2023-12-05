@@ -11,8 +11,8 @@
             positionClass: "toast-bottom-left",
         };
         toastr.info("Logging out..");
-        await fetchPostJson(AUTH_URL + "refresh");
         try {
+            await fetchPostJson(AUTH_URL + "refresh");
             const response = await fetchPostJson(AUTH_URL + "logout");
             if (response.message !== undefined) {
                 toastr.success(response.message);

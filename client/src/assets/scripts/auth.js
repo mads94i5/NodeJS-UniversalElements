@@ -1,4 +1,4 @@
-import { fetchPostJson } from "./fetch";
+import { fetchGetJson, fetchPostJson } from "./fetch";
 import { AUTH_URL } from "./settings";
 import { writable } from "svelte/store";
 
@@ -25,27 +25,20 @@ function setLoggedIn(user) {
 
 export async function checkAuth() {
     try {
-        const response = await fetch(AUTH_URL + "check-auth", {
-            method: "GET",
-            credentials: "include",
-        });
-        if (response.ok) {
-            const user = await response.json();
-            if (user.error !== "Unauthorized") {
-                setLoggedIn(user);
-            } else {
-                try {
-                    await fetchPostJson(AUTH_URL + "refresh");
-                    setLoggedIn(user);
-                } catch (err) {
-                    console.error("Token refresh error:", err.fullResponse.error);
-                    setLoggedOut();
-                }
-            }
+        const response = await fetchGetJson(AUTH_URL + "check-auth");
+        if (response.error !== "Unauthorized") {
+            setLoggedIn(response);
         } else {
-            setLoggedOut();
+            try {
+                await fetchPostJson(AUTH_URL + "refresh");
+                setLoggedIn(response);
+            } catch (err) {
+                console.error("Token refresh error:", err.fullResponse.error);
+                setLoggedOut();
+            }
         }
     } catch (error) {
         console.error("Authentication check error:", error.message);
+        setLoggedOut();
     }
 }

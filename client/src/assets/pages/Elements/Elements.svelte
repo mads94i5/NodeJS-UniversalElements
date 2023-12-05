@@ -5,9 +5,12 @@
     import { fetchGetJson } from "../../scripts/fetch.js";
     import { API_URL } from "../../scripts/settings.js";
     import toastr from "toastr";
+    
+    const style1 = "color: white; background-color: green; border: 2px solid darkgreen";
 
     let elements;
     let selectedElement;
+    let style = style1;
 
     onMount(async () => {
         toastr.options = {
@@ -15,6 +18,11 @@
         };
         await getElements();
     });
+
+    function handleElementSelected(event) {
+        const { element } = event.detail;
+        selectedElement = element;
+    }
 
     async function getElements() {
         try {
@@ -47,13 +55,20 @@
         <br />
     </div>
 </div>
-
-<div class="row">
-    <div class="col-sm-1">
-        <ElementInfo element={selectedElement} />
+{#if elements}
+    <div class="row">
+        <div class="col-md-3">
+            <ElementInfo element={selectedElement} />
+        </div>
+        <div class="col-md-9">
+            <PeriodicTable {elements} on:elementSelected={handleElementSelected} />
+            <br />
+        </div>
     </div>
-    <div class="col-sm-10 periodic-table">
-        <PeriodicTable elements={elements} />
-        <br>
+{:else}
+    <div class="table-container text-center">
+        <div>
+            <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+        </div>
     </div>
-</div>
+{/if}
