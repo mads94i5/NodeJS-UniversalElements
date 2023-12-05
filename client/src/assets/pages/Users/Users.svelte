@@ -40,24 +40,24 @@
     <h2 class="text-center">Users</h2>
     <br />
     <div class="table-container">
-        <table width="100%">
+        <table class="blue-border" width="100%">
             <thead>
                 <tr>
-                    <th style="width: 5%;">ID</th>
-                    <th style="width: 35%;">Username</th>
-                    <th style="width: 45%;">Email</th>
-                    <th>Role</th>
-                    <th>Profile</th>
+                    <th class="tbl-padding border" style="width: 5%;">ID</th>
+                    <th class="tbl-padding border" style="width: 35%;">Username</th>
+                    <th class="tbl-padding border" style="width: 35%;">Email</th>
+                    <th class="tbl-padding border" style="width: 10%;">Role</th>
+                    <th class="tbl-padding border">Profile</th>
                 </tr>
             </thead>
             <tbody id="table-body">
                 {#each users as user (user.id)}
                 <tr>
-                    <td>{user.id}</td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>{user.role}</td>
-                    <td><a href="/profile/{user.id}"><button class="btn btn-primary">View profile</button></a></td>
+                    <td class="tbl-padding border">{user.id}</td>
+                    <td class="tbl-padding border">{user.username}</td>
+                    <td class="tbl-padding border">{user.email}</td>
+                    <td class="tbl-padding border">{user.role}</td>
+                    <td class="text-center border"><a href="/profile/{user.id}"><button class="btn btn-primary"><strong>View profile</strong></button></a></td>
                 </tr>
                 {/each}
             </tbody>

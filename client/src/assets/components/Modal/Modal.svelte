@@ -18,7 +18,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel" style="color: black;"><h4>{title}</h4></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" on:click={() => modalClose("close")}>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" on:click={() => modalClose("cancel")}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -26,10 +26,10 @@
                     <slot />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" on:click={() => modalClose("close")}>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" on:click={() => modalClose("cancel")}>
                         <strong>Cancel</strong>
                     </button>
-                    <button type="button" class="btn btn-danger" on:click={() => modalClose("save")}>
+                    <button type="button" class="btn btn-danger" on:click={() => modalClose("accept")}>
                         <strong>Accept</strong>
                     </button>
                 </div>

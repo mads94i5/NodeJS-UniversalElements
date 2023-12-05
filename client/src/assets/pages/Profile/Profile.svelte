@@ -2,7 +2,7 @@
     // @ts-nocheck
     import { onMount } from "svelte";
     import { authState, checkAuth } from "../../scripts/auth.js";
-    import { fetchGetJson, fetchPostJson, fetchPatchJsonFormData } from "../../scripts/fetch.js";
+    import { fetchGetJson, fetchPostJson, fetchPatchJsonFormData, fetchDelete } from "../../scripts/fetch.js";
     import { API_URL, AUTH_URL } from "../../scripts/settings.js";
     import toastr from "toastr";
     import { navigate } from "svelte-routing";
@@ -16,7 +16,9 @@
 
     const onPopupClose = (data) => {
         showPopup = false;
-		console.log(data);
+        if (data === "accept") {
+            deleteUser();
+        }
     }
 
     export let userId;
@@ -189,7 +191,40 @@
         await getUserInfo();
     }
 
-    function deleteProfile() {}
+    async function deleteUser() {
+        toastr.info("Deleting user..");
+        await fetchPostJson(AUTH_URL + "refresh");
+        try {
+            const response = await fetchDelete(API_URL + `users/${userId}`);
+            if (response.message !== undefined) {
+                toastr.success(response.message);
+                if ($authState.userData.userId === userId) {
+                    navigate("/logout");
+                } else if (isAdmin) {
+                    navigate("/users");
+                }
+            } else {
+                if (response.error !== undefined) {
+                    toastr.error(response.error);
+                } else {
+                    const responseText = await response.text();
+                    toastr.error(responseText);
+                }
+            }
+        } catch (error) {
+            if (error.message) {
+                if (error.message.toString().includes("Too many r")) {
+                    toastr.error("Too many requests");
+                } else {
+                    toastr.error(error.message);
+                }
+            } else if (error.fullResponse) {
+                toastr.error(error.fullResponse.error);
+            } else {
+                toastr.error("An unknown error occurred.");
+            }
+        }
+    }
 </script>
 
 <div class="container">
