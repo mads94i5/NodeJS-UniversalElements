@@ -15,7 +15,7 @@
             event.preventDefault();
             toastr.info("Trying to register...");
             try {
-                const response = await fetchPostJsonFormData(AUTH_URL + "register", form);
+                const response = await fetchPostJsonFormData(AUTH_URL + "auth/register", form);
                 if (response.token !== undefined) {
                     toastr.success("Registered successfully!");
                     setTimeout(function () {

@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 async function handleHttpErrors(res) {
     if (!res.ok) {
         const errorResponse = await res.json();
@@ -44,9 +46,11 @@ export async function fetchPostJsonFormData(URL, form, token = null) {
     const formData = new FormData(formElement);
     const dataFromForm = {};
     formData.forEach((value, key) => (dataFromForm[key] = value));
+    const jsonString = JSON.stringify(dataFromForm);
+    const sanitizedData = DOMPurify.sanitize(jsonString);
     let options = {
         method: "POST",
-        body: JSON.stringify(dataFromForm),
+        body: sanitizedData,
         headers: {
             "Content-Type": "application/json",
         },
@@ -79,9 +83,11 @@ export async function fetchPatchJsonFormData(URL, form, token = null) {
     const formData = new FormData(formElement);
     const dataFromForm = {};
     formData.forEach((value, key) => (dataFromForm[key] = value));
+    const jsonString = JSON.stringify(dataFromForm);
+    const sanitizedData = DOMPurify.sanitize(jsonString);
     let options = {
         method: "PATCH",
-        body: JSON.stringify(dataFromForm),
+        body: sanitizedData,
         headers: {
             "Content-Type": "application/json",
         },
@@ -114,9 +120,11 @@ export async function fetchPutJsonFormData(URL, form, token = null) {
     const formData = new FormData(formElement);
     const dataFromForm = {};
     formData.forEach((value, key) => (dataFromForm[key] = value));
+    const jsonString = JSON.stringify(dataFromForm);
+    const sanitizedData = DOMPurify.sanitize(jsonString);
     let options = {
         method: "PUT",
-        body: JSON.stringify(dataFromForm),
+        body: sanitizedData,
         headers: {
             "Content-Type": "application/json",
         },

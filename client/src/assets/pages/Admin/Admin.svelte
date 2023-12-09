@@ -6,11 +6,11 @@
     <div class="text-center">
         <h2>Admin</h2><br>
         <div class="row">
-            <div class="col-sm-6">
-                <Link to="/users"><button class="btn btn-success"><strong>Users</strong></button></Link>
+            <div class="col-xs-6">
+                <Link to="/users"><button class="btn btn-primary"><strong>Users</strong></button></Link>
             </div>
-            <div class="col-sm-6">
-        
+            <div class="col-xs-6">
+                <Link to="/elements"><button class="btn btn-primary"><strong>Elements</strong></button></Link>
             </div>
         </div>
     </div>

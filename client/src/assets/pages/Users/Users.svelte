@@ -12,8 +12,8 @@
         };
         toastr.info("Retrieving users..");
         try {
-            await fetchPostJson(AUTH_URL + "refresh");
-            const response = await fetchGetJson(API_URL + "users");
+            await fetchPostJson(AUTH_URL + "auth/refresh");
+            const response = await fetchGetJson(API_URL + "api/users");
             if (response !== undefined) {
                 toastr.success("Retrieved users");
                 users = response;
@@ -63,4 +63,5 @@
             </tbody>
         </table>
     </div>
+    <br />
 </div>

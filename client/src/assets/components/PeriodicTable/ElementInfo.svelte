@@ -18,7 +18,7 @@
     let selectedConductivity;
     let selectedAbundance;
 
-    function capitalizeFirstLetter(str) {
+    function capitalize(str) {
         return str.replace(str[0], str[0].toUpperCase());
     }
 </script>
@@ -128,7 +128,7 @@
                 </td>
                 <td class="tbl-padding element-data">
                     {#if element.groupFamily}
-                    <div class="smaller-font">{capitalizeFirstLetter(element.groupFamily)}</div>
+                    <div class="smaller-font">{capitalize(element.groupFamily)}</div>
                     {:else}
                         N/A
                     {/if}
@@ -141,9 +141,9 @@
                 <td class="tbl-padding element-data">
                     {#if element.groupTrivialName}
                         {#if element.groupTrivialName.length > 21}
-                            <div class="small-font">{capitalizeFirstLetter(element.groupTrivialName)}</div>
+                            <div class="small-font">{capitalize(element.groupTrivialName)}</div>
                         {:else}
-                            <div class="smaller-font">{capitalizeFirstLetter(element.groupTrivialName)}</div>
+                            <div class="smaller-font">{capitalize(element.groupTrivialName)}</div>
                         {/if}
                     {:else}
                         N/A
@@ -156,7 +156,7 @@
                 </td>
                 <td class="tbl-padding element-data">
                     {#if element.series}
-                        <div class="smaller-font">{capitalizeFirstLetter(element.series)}</div>
+                        <div class="smaller-font">{capitalize(element.series)}</div>
                     {:else}
                         N/A
                     {/if}
@@ -168,7 +168,7 @@
                 </td>
                 <td class="tbl-padding element-data">
                     {#if element.metallicClassification}
-                        {capitalizeFirstLetter(element.metallicClassification)}
+                        {capitalize(element.metallicClassification)}
                     {:else}
                         N/A
                     {/if}
@@ -364,7 +364,7 @@
                 </td>
                 <td class="tbl-padding element-data">
                     {#if element.bondingType}
-                        <div class="smaller-font">{capitalizeFirstLetter(element.bondingType)}</div>
+                        <div class="smaller-font">{capitalize(element.bondingType)}</div>
                     {:else}
                         N/A
                     {/if}
@@ -653,7 +653,7 @@
                 </td>
                 <td class="tbl-padding element-data">
                     {#if element.hypothetical}
-                        <div class="smaller-font">{capitalizeFirstLetter(element.hypothetical)}</div>
+                        <div class="smaller-font">{capitalize(element.hypothetical)}</div>
                     {:else}
                         N/A
                     {/if}

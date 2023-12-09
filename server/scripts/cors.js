@@ -12,3 +12,8 @@ export const corsOptions = {
   },
   credentials: true,
 };
+
+export const corsOptions1 = {
+  origin: true,
+  credentials: true,
+};

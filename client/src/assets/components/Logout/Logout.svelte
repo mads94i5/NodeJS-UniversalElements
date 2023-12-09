@@ -12,8 +12,8 @@
         };
         toastr.info("Logging out..");
         try {
-            await fetchPostJson(AUTH_URL + "refresh");
-            const response = await fetchPostJson(AUTH_URL + "logout");
+            await fetchPostJson(AUTH_URL + "auth/refresh");
+            const response = await fetchPostJson(AUTH_URL + "auth/logout");
             if (response.message !== undefined) {
                 toastr.success(response.message);
                 await checkAuth();

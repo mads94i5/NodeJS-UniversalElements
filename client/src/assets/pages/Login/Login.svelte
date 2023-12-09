@@ -17,7 +17,7 @@
             event.preventDefault();
             toastr.info("Logging in..");
             try {
-                const response = await fetchPostJsonFormData(AUTH_URL + "login", form);
+                const response = await fetchPostJsonFormData(AUTH_URL + "auth/login", form);
                 if (response.message !== undefined) {
                     toastr.success(response.message);
                     await checkAuth();

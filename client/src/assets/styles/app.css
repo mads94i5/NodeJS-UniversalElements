@@ -174,6 +174,63 @@ td.white-border {
     height: 31rem;
 }
 
+.vertical-scrollable-content {
+    overflow-y: scroll;
+    white-space: nowrap;
+}
+
+.vertical-scrollable-content::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.vertical-scrollable-content::-webkit-scrollbar-thumb {
+    background-color: rgb(109, 122, 216); 
+    border-radius: 6px;
+}
+
+.vertical-scrollable-content::-webkit-scrollbar-track {
+    background-color: transparent; 
+    border: 1px solid grey;
+}
+
+.vertical-scrollable-content {
+    scrollbar-width: thin; 
+}
+
+.vertical-scrollable-content::-moz-scrollbar-thumb {
+    background-color: rgb(109, 122, 216); 
+    border-radius: 6px;
+}
+
+.vertical-scrollable-content::-moz-scrollbar-track {
+    background-color: transparent; 
+    border: 1px solid grey;
+}
+
+.chat-box {
+    background-color:dimgrey;
+    height: 70vh;
+}
+
+.chat-bubble {
+    border: 2px solid cadetblue;
+    border-radius: 4rem;
+    color:rgb(219, 219, 219);
+    width: 50%;
+    margin: 1rem;
+    padding: 0.5rem 3rem 0 3rem;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.chat-bubble-self {
+    background-color: rgb(109, 122, 216);
+}
+
+.chat-bubble-other {
+    background-color:darkslategrey;
+}
+
 @media (max-width: 991px) {
     .element-info {
         flex-wrap: nowrap;
@@ -235,14 +292,14 @@ select {
     margin: 0;
 }
 
-#atomic-mass {
+.atomic-mass {
     font-size: 0.8rem;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-#atomic-number {
+.atomic-number {
     font-size: 1.5rem;
     position: absolute;
     top: 28%;
@@ -250,7 +307,7 @@ select {
     transform: translate(-50%, -50%);
 }
 
-#symbol {
+.symbol {
     font-size: 2rem;
     position: absolute;
     top: 50%;
@@ -258,7 +315,7 @@ select {
     transform: translate(-50%, -50%);
 }
 
-#element-name {
+.element-name {
     font-size: 0.9rem;
     position: absolute;
     bottom: 12%;
@@ -267,14 +324,14 @@ select {
     transform: translate(-50%, -50%);
 }
 
-#ionization-energy {
+.ionization-energy {
     font-size: 0.8rem;
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
-#electronegativity {
+.electronegativity {
     font-size: 0.8rem;
     position: absolute;
     bottom: 0;

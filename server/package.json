@@ -20,7 +20,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mysql2": "3.6.2",
-    "nodemailer": "^6.9.7"
+    "nodemailer": "^6.9.7",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "eslint": "^8.48.0"

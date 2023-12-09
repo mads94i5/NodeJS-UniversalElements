@@ -10,7 +10,7 @@ import * as rateLimiters from "./scripts/rateLimiters.js";
 const app = express();
 app.use(helmet())
 app.use(cors(corsOptions));
-app.set('trust proxy', 1);
+//app.set('trust proxy', 1);
 app.use("*", rateLimiters.main);
 app.use(cookieParser());
 app.use(express.json());
@@ -22,8 +22,14 @@ app.use(elementsRouter);
 import usersRouter from "./routers/usersRouter.js";
 app.use(usersRouter);
 
+import http from "http";
+const server = http.createServer(app);
+
+import initializeChat from "./routers/chatRouter.js";
+app.use(initializeChat(server));
+
 const PORT = process.env.API_SERVER_PORT || 8080;
-const server = app.listen(PORT, (error) => {
+server.listen(PORT, (error) => {
     if (error) {
         console.log("API server failed to start:", error);
         return;

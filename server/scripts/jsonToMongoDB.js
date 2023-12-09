@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const readJsonFile = async () => {
     try {
-        const jsonData = await fs.promises.readFile("../periodic-table.json", "utf-8");
+        const jsonData = await fs.promises.readFile("./server/periodic-table.json", "utf-8");
         const jsonParsed = JSON.parse(jsonData);
         const jsonArray = jsonParsed.elements;
 

@@ -12,14 +12,14 @@
 
     const onShowPopup = (ev) => {
         showPopup = true;
-    }
+    };
 
     const onPopupClose = (data) => {
         showPopup = false;
         if (data === "accept") {
             deleteUser();
         }
-    }
+    };
 
     export let userId;
     let user = [];
@@ -41,10 +41,9 @@
     });
 
     async function getUserInfo() {
-        await fetchPostJson(AUTH_URL + "refresh");
         await checkAuth();
         try {
-            const response = await fetchGetJson(API_URL + "users/" + userId);
+            const response = await fetchGetJson(API_URL + "api/users/" + userId);
             if (response !== undefined) {
                 user = response;
             } else {
@@ -71,15 +70,14 @@
 
     async function endEditUsername() {
         isEditingUsername = false;
-        await getUserInfo();
     }
 
     async function submitUsername() {
         toastr.info("Changing username..");
         const usernameForm = document.getElementById("usernameForm");
-        await fetchPostJson(AUTH_URL + "refresh");
+        await fetchPostJson(AUTH_URL + "auth/refresh");
         try {
-            const response = await fetchPatchJsonFormData(API_URL + `users/edit/username/${userId}`, usernameForm);
+            const response = await fetchPatchJsonFormData(API_URL + `api/users/edit/username/${userId}`, usernameForm);
             if (response.message !== undefined) {
                 toastr.success(response.message);
             } else {
@@ -113,15 +111,14 @@
 
     async function endEditEmail() {
         isEditingEmail = false;
-        await getUserInfo();
     }
 
     async function submitEmail() {
         toastr.info("Changing email..");
         const emailForm = document.getElementById("emailForm");
-        await fetchPostJson(AUTH_URL + "refresh");
+        await fetchPostJson(AUTH_URL + "auth/refresh");
         try {
-            const response = await fetchPatchJsonFormData(API_URL + `users/edit/email/${userId}`, emailForm);
+            const response = await fetchPatchJsonFormData(API_URL + `api/users/edit/email/${userId}`, emailForm);
             if (response.message !== undefined) {
                 toastr.success(response.message);
             } else {
@@ -155,15 +152,14 @@
 
     async function endEditPassword() {
         isEditingPassword = false;
-        await getUserInfo();
     }
 
     async function submitPassword() {
         toastr.info("Changing password..");
         const passwordForm = document.getElementById("passwordForm");
-        await fetchPostJson(AUTH_URL + "refresh");
+        await fetchPostJson(AUTH_URL + "auth/refresh");
         try {
-            const response = await fetchPatchJsonFormData(API_URL + `users/edit/password/${userId}`, passwordForm);
+            const response = await fetchPatchJsonFormData(API_URL + `api/users/edit/password/${userId}`, passwordForm);
             if (response.message !== undefined) {
                 toastr.success(response.message);
             } else {
@@ -193,9 +189,9 @@
 
     async function deleteUser() {
         toastr.info("Deleting user..");
-        await fetchPostJson(AUTH_URL + "refresh");
+        await fetchPostJson(AUTH_URL + "auth/refresh");
         try {
-            const response = await fetchDelete(API_URL + `users/${userId}`);
+            const response = await fetchDelete(API_URL + `api/users/${userId}`);
             if (response.message !== undefined) {
                 toastr.success(response.message);
                 if ($authState.userData.userId === userId) {
@@ -231,105 +227,101 @@
     <div class="text-center">
         <h2>Profile</h2>
         <br />
-        <p id="p-username">
-            {#if !isEditingUsername}
-                <div class="row">
-                    <div class="col-sm-2 col-sm-offset-2">
-                        <p class="text-right"><strong>Username:</strong></p>
-                    </div>
-                    <div class="col-sm-4">
-                        {user.username}
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-success" on:click={startEditUsername}><strong>Edit</strong></button>
-                    </div>
+        {#if !isEditingUsername}
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-2">
+                    <p><strong>Username:</strong></p>
                 </div>
-            {:else}
-                <form id="usernameForm" on:submit|preventDefault={submitUsername}>
-                    <div class="row">
-                        <div class="col-sm-2 col-sm-offset-2">
-                            <p class="text-right"><strong>Username:</strong></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <input id="username" name="username" bind:value={user.username} />
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
-                            <button class="btn btn-danger" on:click={endEditUsername}><strong>Cancel</strong></button>
-                        </div>
-                    </div>
-                </form>
-            {/if}
-        </p>
-        <p id="p-email">
-            {#if !isEditingEmail}
-                <div class="row">
-                    <div class="col-sm-2 col-sm-offset-2">
-                        <p class="text-right"><strong>Email:</strong></p>
-                    </div>
-                    <div class="col-sm-4">
-                        {user.email}
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-success" on:click={startEditEmail}><strong>Edit</strong></button>
-                    </div>
+                <div class="col-xs-4">
+                    <p>{user.username}</p>
                 </div>
-            {:else}
-                <form id="emailForm" on:submit|preventDefault={submitEmail}>
-                    <div class="row">
-                        <div class="col-sm-2 col-sm-offset-2">
-                            <p class="text-right"><strong>Email:</strong></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <input id="email" name="email" bind:value={user.email} />
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
-                            <button class="btn btn-danger" on:click={endEditEmail}><strong>Cancel</strong></button>
-                        </div>
-                    </div>
-                </form>
-            {/if}
-        </p>
-        <p id="p-password">
-            {#if !isEditingPassword}
-                <div class="row">
-                    <div class="col-sm-2 col-sm-offset-2">
-                        <p class="text-right"><strong>Password:</strong></p>
-                    </div>
-                    <div class="col-sm-4">********</div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-success" on:click={startEditPassword}><strong>Edit</strong></button>
-                    </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success" on:click={startEditUsername}><strong>Edit</strong></button>
                 </div>
-            {:else}
-                <form id="passwordForm" on:submit|preventDefault={submitPassword}>
-                    <div class="row">
-                        <div class="col-sm-2 col-sm-offset-2">
-                            <p class="text-right"><strong>Password:</strong></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <input id="password" name="password" type="password" bind:value={user.password} />
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
-                            <button class="btn btn-danger" on:click={endEditPassword}><strong>Cancel</strong></button>
-                        </div>
-                    </div>
-                </form>
-            {/if}
-        </p>
-        <div class="row">
-            <div class="col-sm-2 col-sm-offset-2">
-                <p class="text-right"><strong>Delete User:</strong></p>
             </div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-2">
+        {:else}
+            <form id="usernameForm" on:submit|preventDefault={submitUsername}>
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-2">
+                        <p><strong>Username:</strong></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <input id="username" name="username" bind:value={user.username} />
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
+                        <button class="btn btn-danger" on:click={endEditUsername}><strong>Cancel</strong></button>
+                    </div>
+                </div>
+            </form>
+        {/if}
+        <br />
+        {#if !isEditingEmail}
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-2">
+                    <p><strong>Email:</strong></p>
+                </div>
+                <div class="col-xs-4">
+                    <p>{user.email}</p>
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success" on:click={startEditEmail}><strong>Edit</strong></button>
+                </div>
+            </div>
+        {:else}
+            <form id="emailForm" on:submit|preventDefault={submitEmail}>
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-2">
+                        <p><strong>Email:</strong></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <input id="email" name="email" bind:value={user.email} />
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
+                        <button class="btn btn-danger" on:click={endEditEmail}><strong>Cancel</strong></button>
+                    </div>
+                </div>
+            </form>
+        {/if}
+        <br />
+        {#if !isEditingPassword}
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-2">
+                    <p><strong>Password:</strong></p>
+                </div>
+                <div class="col-xs-4"><p>********</p></div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success" on:click={startEditPassword}><strong>Edit</strong></button>
+                </div>
+            </div>
+        {:else}
+            <form id="passwordForm" on:submit|preventDefault={submitPassword}>
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-2">
+                        <p><strong>Password:</strong></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <input id="password" name="password" type="password" bind:value={user.password} />
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-success" type="submit"><strong>Submit</strong></button>
+                        <button class="btn btn-danger" on:click={endEditPassword}><strong>Cancel</strong></button>
+                    </div>
+                </div>
+            </form>
+        {/if}
+        <br />
+        <div class="row text-center">
+            <div class="col-xs-2 col-xs-offset-2">
+                <p><strong>Delete User:</strong></p>
+            </div>
+            <div class="col-xs-4"></div>
+            <div class="col-xs-2">
                 <button type="button" class="btn btn-danger" on:click={onShowPopup}><strong>Delete</strong></button>
-                <Modal open={showPopup} onClosed={(data) => onPopupClose(data)} title="Delete user">
-                    Do you want to delete this user?
-                </Modal>
+                <Modal open={showPopup} onClosed={(data) => onPopupClose(data)} title="Delete user">Do you want to delete this user?</Modal>
             </div>
         </div>
+        <br />
     </div>
 </div>

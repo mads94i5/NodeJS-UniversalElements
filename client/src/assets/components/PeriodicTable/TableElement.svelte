@@ -71,16 +71,16 @@
 </script>
 
 <button class="element" style="{customStyles}" on:click={handleClick}>
-    <div id="atomic-mass">
+    <div class="atomic-mass">
         {#if Array.isArray(element.atomicMass)}
             {"(" + element.atomicMass + ")"}
         {:else}
             {element.atomicMass || ""}
         {/if}
     </div>
-    <div id="atomic-number">{element.atomicNumber || ""}</div>
-    <div id="symbol">{element.symbol}</div>
-    <div id="element-name" class="no-wrap">{element.name}</div>
-    <div id="ionization-energy">{element.ionizationEnergy[0] || ""}</div>
-    <div id="electronegativity">{element.electronegativity || ""}</div>
+    <div class="atomic-number">{element.atomicNumber || ""}</div>
+    <div class="symbol">{element.symbol}</div>
+    <div class="element-name no-wrap">{element.name}</div>
+    <div class="ionization-energy">{element.ionizationEnergy[0] || ""}</div>
+    <div class="electronegativity">{element.electronegativity || ""}</div>
 </button>

@@ -5,6 +5,8 @@
     import UserGuard from "../Guards/UserGuard.svelte";
     import AdminGuard from "../Guards/AdminGuard.svelte";
     import Home from "../../pages/Home/Home.svelte";
+    import ElementsTable from "../../pages/Elements/ElementsTable.svelte";
+    import Element from "../../pages/Elements/Element.svelte";
     import Elements from "../../pages/Elements/Elements.svelte";
     import Chat from "../../pages/Chat/Chat.svelte";
     import Logout from "../Logout/Logout.svelte";
@@ -15,6 +17,7 @@
     import Users from "../../pages/Users/Users.svelte";
     import Error from "../../pages/Error/Error.svelte";
     import Unauthorized from "../../pages/Error/Unauthorized.svelte";
+    import AddElement from "../../pages/Elements/AddElement.svelte";
 
     export let url = "";
 
@@ -38,7 +41,7 @@
 <Router {url}>
     <nav>
         <Link to="/"><img src="/assets/images/icon.png" alt="" class="nav-icon" /></Link>
-        <Link to="/elements"><button class="btn btn-nav btn-primary"><strong>Elements</strong></button></Link>
+        <Link to="/table"><button class="btn btn-nav btn-primary"><strong>Table</strong></button></Link>
         {#if userIsLoggedIn}
         <Link to="/chat"><button class="btn btn-nav btn-primary"><strong>Chat</strong></button></Link>
             <div class="user-area">
@@ -57,7 +60,7 @@
     </nav>
     <div>
         <Route path="/"><Home /></Route>
-        <Route path="/elements"><Elements /></Route>
+        <Route path="/table"><ElementsTable /></Route>
         <Route path="/chat">
             <UserGuard>
                 <Chat />
@@ -84,6 +87,21 @@
         <Route path="/users">
             <AdminGuard>
                 <Users />
+            </AdminGuard>
+        </Route>
+        <Route path="/elements">
+            <AdminGuard>
+                <Elements />
+            </AdminGuard>
+        </Route>
+        <Route path="/elements/:id" let:params>
+            <AdminGuard>
+                <Element elementId={params.id} />
+            </AdminGuard>
+        </Route>
+        <Route path="/elements/new">
+            <AdminGuard>
+                <AddElement />
             </AdminGuard>
         </Route>
         <Route path="/unauthorized"><Unauthorized /></Route>
