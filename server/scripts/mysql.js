@@ -25,7 +25,7 @@ const keepConnectionAlive = () => {
             }
         }
     });
-}; 
+};
 
 const keepAliveInterval = setInterval(keepConnectionAlive, 5 * 60 * 1000);
 

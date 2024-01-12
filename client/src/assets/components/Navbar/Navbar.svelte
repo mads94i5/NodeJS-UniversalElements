@@ -43,7 +43,7 @@
         <Link to="/"><img src="/assets/images/icon.png" alt="" class="nav-icon" /></Link>
         <Link to="/table"><button class="btn btn-nav btn-primary"><strong>Table</strong></button></Link>
         {#if userIsLoggedIn}
-        <Link to="/chat"><button class="btn btn-nav btn-primary"><strong>Chat</strong></button></Link>
+            <Link to="/chat"><button class="btn btn-nav btn-primary"><strong>Chat</strong></button></Link>
             <div class="user-area">
                 {#if isAdmin}
                     <Link to="/admin"><button class="btn btn-user btn-primary"><strong>Admin</strong></button></Link>

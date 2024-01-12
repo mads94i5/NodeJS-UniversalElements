@@ -3,7 +3,7 @@
 
     export let element;
     let customStyles = "";
-    
+
     const style1 = "color: white; background-color: green; border: 2px solid darkgreen";
     const style2 = "color: white; background-color: goldenrod; border: 2px solid darkgoldenrod";
     const style3 = "color: white; background-color: chocolate; border: 2px solid brown";
@@ -21,7 +21,7 @@
     function handleClick() {
         dispatch("elementClicked", { element });
     }
-    
+
     function setSeriesColor() {
         switch (element.series) {
             case "reactive nonmetals":
@@ -67,10 +67,9 @@
     afterUpdate(() => {
         setSeriesColor();
     });
-
 </script>
 
-<button class="element" style="{customStyles}" on:click={handleClick}>
+<button class="element" style={customStyles} on:click={handleClick}>
     <div class="atomic-mass">
         {#if Array.isArray(element.atomicMass)}
             {"(" + element.atomicMass + ")"}

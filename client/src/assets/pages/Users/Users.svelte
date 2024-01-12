@@ -33,7 +33,7 @@
                 toastr.error("An unknown error occurred.");
             }
         }
-    })
+    });
 </script>
 
 <div class="container">
@@ -52,13 +52,15 @@
             </thead>
             <tbody id="table-body">
                 {#each users as user (user.id)}
-                <tr>
-                    <td class="tbl-padding border">{user.id}</td>
-                    <td class="tbl-padding border">{user.username}</td>
-                    <td class="tbl-padding border">{user.email}</td>
-                    <td class="tbl-padding border">{user.role}</td>
-                    <td class="text-center border"><a href="/profile/{user.id}"><button class="btn btn-primary"><strong>View profile</strong></button></a></td>
-                </tr>
+                    <tr>
+                        <td class="tbl-padding border">{user.id}</td>
+                        <td class="tbl-padding border">{user.username}</td>
+                        <td class="tbl-padding border">{user.email}</td>
+                        <td class="tbl-padding border">{user.role}</td>
+                        <td class="text-center border"
+                            ><a href="/profile/{user.id}"><button class="btn btn-primary"><strong>View profile</strong></button></a></td
+                        >
+                    </tr>
                 {/each}
             </tbody>
         </table>

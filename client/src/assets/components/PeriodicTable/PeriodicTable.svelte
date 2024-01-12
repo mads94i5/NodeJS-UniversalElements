@@ -6,24 +6,24 @@
     const e_57_70 = {};
     e_57_70.symbol = "*";
     e_57_70.name = "57-70";
-    e_57_70.ionizationEnergy = [ "" ];
+    e_57_70.ionizationEnergy = [""];
     e_57_70.series = "description";
     const e_89_102 = {};
     e_89_102.symbol = "**";
     e_89_102.name = "89-102";
-    e_89_102.ionizationEnergy = [ "" ];
+    e_89_102.ionizationEnergy = [""];
     e_89_102.series = "description";
     const e_121_138 = {};
     e_121_138.symbol = "***";
     e_121_138.name = "121-138";
-    e_121_138.ionizationEnergy = [ "" ];
+    e_121_138.ionizationEnergy = [""];
     e_121_138.series = "description";
     const e_139_152 = {};
     e_139_152.symbol = "****";
     e_139_152.name = "139-152";
-    e_139_152.ionizationEnergy = [ "" ];
+    e_139_152.ionizationEnergy = [""];
     e_139_152.series = "description";
-    
+
     const dispatch = createEventDispatcher();
 
     function handleElementClick(event) {

@@ -5,7 +5,7 @@
     import toastr from "toastr";
     import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
-    
+
     onMount(async () => {
         toastr.options = {
             positionClass: "toast-bottom-left",

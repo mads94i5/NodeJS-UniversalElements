@@ -75,8 +75,7 @@
         </p>
         <div id="chat-box" class="chat-box blue-border vertical-scrollable-content">
             {#each messages as message}
-                <MessageBubble username={message.username} 
-                isSelf={user.username === message.username ? "self" : "other"}>
+                <MessageBubble username={message.username} isSelf={user.username === message.username ? "self" : "other"}>
                     {message.text}
                 </MessageBubble>
             {/each}

@@ -28,7 +28,7 @@ const server = app.listen(PORT, (error) => {
         return;
     }
     console.log("Auth server started at port:", PORT);
-}); 
+});
 
 process.on("unhandledRejection", (reason, promise) => {
     console.error("Unhandled Promise Rejection at:", promise, "reason:", reason);

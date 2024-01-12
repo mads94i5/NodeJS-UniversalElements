@@ -13,7 +13,9 @@
     onMount(async () => {
         await checkAuth();
         if (!userIsLoggedIn) {
-            {navigate("/unauthorized")};
+            {
+                navigate("/unauthorized");
+            }
         }
     });
 </script>

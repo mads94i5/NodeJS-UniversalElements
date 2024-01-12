@@ -90,7 +90,7 @@ router.post("/auth/login", (req, res) => {
             const accessToken = jwt.sign({ userId: user.id, role: user.role }, jwtOptions.jwtAccessSecret, { expiresIn: "15s" });
 
             const refreshToken = jwt.sign({ userId: user.id, role: user.role }, jwtOptions.jwtRefreshSecret);
-            
+
             mysqlDB.query("UPDATE users SET refreshToken = ? WHERE id = ?", [refreshToken, user.id], (err) => {
                 if (err) {
                     console.error("Error storing refresh token:", err);

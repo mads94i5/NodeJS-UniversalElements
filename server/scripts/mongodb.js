@@ -1,14 +1,7 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
-const url = process.env.NODE_ENV === 'production' ? `mongodb+srv://mongouser:${process.env.MONGO_PASSWORD}@cluster0.dejan4e.mongodb.net/?retryWrites=true&w=majority` : "mongodb://localhost:27017";
-const client = new MongoClient(url, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
-});
-
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
 await client.connect();
 
 const dbName = "universal_elements";

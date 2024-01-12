@@ -1,6 +1,6 @@
 const allowedOrigins = [
-    "http://localhost:5173", //"https://deployedfrontend.com"
-]; 
+  "http://localhost:5173", //"https://deployedfrontend.com"
+];
 
 export const corsOptions = {
   origin: function (origin, callback) {

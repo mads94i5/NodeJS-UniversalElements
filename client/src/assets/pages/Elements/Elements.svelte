@@ -33,7 +33,7 @@
                 toastr.error("An unknown error occurred.");
             }
         }
-    })
+    });
 </script>
 
 <div class="container">
@@ -51,12 +51,16 @@
             </thead>
             <tbody id="table-body">
                 {#each elements as element}
-                <tr>
-                    <td class="tbl-padding border">{element.atomicNumber}</td>
-                    <td class="tbl-padding border">{element.name}</td>
-                    <td class="tbl-padding border">{element.symbol}</td>
-                    <td class="text-center border"><a href="/elements/{element.atomicNumber}"><button class="btn btn-primary"><strong>View element</strong></button></a></td>
-                </tr>
+                    <tr>
+                        <td class="tbl-padding border">{element.atomicNumber}</td>
+                        <td class="tbl-padding border">{element.name}</td>
+                        <td class="tbl-padding border">{element.symbol}</td>
+                        <td class="text-center border"
+                            ><a href="/elements/{element.atomicNumber}"
+                                ><button class="btn btn-primary"><strong>View element</strong></button></a
+                            ></td
+                        >
+                    </tr>
                 {/each}
             </tbody>
         </table>
