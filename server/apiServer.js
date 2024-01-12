@@ -8,9 +8,9 @@ import { corsOptions } from "./scripts/cors.js";
 import * as rateLimiters from "./scripts/rateLimiters.js";
 
 const app = express();
+app.set('trust proxy', true);
 app.use(helmet())
 app.use(cors(corsOptions));
-//app.set('trust proxy', 1);
 app.use("*", rateLimiters.main);
 app.use(cookieParser());
 app.use(express.json());
