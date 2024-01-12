@@ -141,30 +141,30 @@ td.white-border {
 }
 
 .horizontal-scrollable-content::-webkit-scrollbar {
-    width: 12px; 
+    width: 12px;
 }
 
 .horizontal-scrollable-content::-webkit-scrollbar-thumb {
-    background-color: rgb(109, 122, 216); 
+    background-color: rgb(109, 122, 216);
     border-radius: 6px;
 }
 
 .horizontal-scrollable-content::-webkit-scrollbar-track {
-    background-color: transparent; 
+    background-color: transparent;
     border: 1px solid grey;
 }
 
 .horizontal-scrollable-content {
-    scrollbar-width: thin; 
+    scrollbar-width: thin;
 }
 
 .horizontal-scrollable-content::-moz-scrollbar-thumb {
-    background-color: rgb(109, 122, 216); 
+    background-color: rgb(109, 122, 216);
     border-radius: 6px;
 }
 
 .horizontal-scrollable-content::-moz-scrollbar-track {
-    background-color: transparent; 
+    background-color: transparent;
     border: 1px solid grey;
 }
 
@@ -180,42 +180,42 @@ td.white-border {
 }
 
 .vertical-scrollable-content::-webkit-scrollbar {
-    width: 12px; 
+    width: 12px;
 }
 
 .vertical-scrollable-content::-webkit-scrollbar-thumb {
-    background-color: rgb(109, 122, 216); 
+    background-color: rgb(109, 122, 216);
     border-radius: 6px;
 }
 
 .vertical-scrollable-content::-webkit-scrollbar-track {
-    background-color: transparent; 
+    background-color: transparent;
     border: 1px solid grey;
 }
 
 .vertical-scrollable-content {
-    scrollbar-width: thin; 
+    scrollbar-width: thin;
 }
 
 .vertical-scrollable-content::-moz-scrollbar-thumb {
-    background-color: rgb(109, 122, 216); 
+    background-color: rgb(109, 122, 216);
     border-radius: 6px;
 }
 
 .vertical-scrollable-content::-moz-scrollbar-track {
-    background-color: transparent; 
+    background-color: transparent;
     border: 1px solid grey;
 }
 
 .chat-box {
-    background-color:dimgrey;
+    background-color: dimgrey;
     height: 70vh;
 }
 
 .chat-bubble {
     border: 2px solid cadetblue;
     border-radius: 4rem;
-    color:rgb(219, 219, 219);
+    color: rgb(219, 219, 219);
     width: 50%;
     margin: 1rem;
     padding: 0.5rem 3rem 0 3rem;
@@ -228,20 +228,20 @@ td.white-border {
 }
 
 .chat-bubble-other {
-    background-color:darkslategrey;
+    background-color: darkslategrey;
 }
 
 @media (max-width: 991px) {
     .element-info {
         flex-wrap: nowrap;
-        justify-content: baseline; 
+        justify-content: baseline;
     }
 }
 
 @media (min-width: 992px) {
     .element-info {
         flex-wrap: wrap;
-        justify-content: center; 
+        justify-content: center;
         max-width: 24.8rem;
     }
 }
@@ -260,7 +260,7 @@ select {
 }
 
 .element-info {
-    display: flex; 
+    display: flex;
     margin: 0 3rem 3rem;
     min-width: 24.8rem;
 }
