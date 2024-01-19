@@ -60,7 +60,7 @@ router.post("/auth/register", (req, res) => {
                     console.error("Error registering user:", err);
                     return res.status(500).json({ error: "Registration failed" });
                 }
-                sendEmail(user.email, "Registered user", "You have successfully registered a user with the login template website.");
+                sendEmail(user.email, "Registered user", "You have successfully registered a user with the website.");
                 const token = jwt.sign({ userId: result.insertId, role: user.role }, jwtOptions.jwtAccessSecret, { expiresIn: "15s" });
                 res.json({ token });
             });
