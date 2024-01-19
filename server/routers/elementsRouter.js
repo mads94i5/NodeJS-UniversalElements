@@ -42,7 +42,7 @@ router.put("/api/elements/:id", isAdmin, async (req, res) => {
     const elementId = Number(req.params.id);
     const updates = req.body;
     const elements = await mongoDB.elements.find().toArray();
-    const parsedElement = parseElementData(updates, elements);
+    const parsedElement = parseElementData(updates, elements, false);
     try {
         const result = await mongoDB.elements.updateOne(
             { atomicNumber: elementId },

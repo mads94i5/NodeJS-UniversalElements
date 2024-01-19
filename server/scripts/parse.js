@@ -1,4 +1,4 @@
-export function parseElementData(element, elements) {
+export function parseElementData(element, elements, isNew = true) {
     Object.keys(element).forEach(key => {
         if (element[key] === "") {
             element[key] = null;
@@ -7,7 +7,7 @@ export function parseElementData(element, elements) {
     if (element.atomicNumber === null) return null;
     if (isNaN(element.atomicNumber)) return null;
     for (const e of elements) {
-        if (Number(e.atomicNumber) === Number(element.atomicNumber)) return false;
+        if (Number(e.atomicNumber) === Number(element.atomicNumber) && isNew) return false;
     }
     if (element.name === null || element.name.trim() === "") return null;
     if (element.symbol === null || element.symbol.trim() === "") return null;

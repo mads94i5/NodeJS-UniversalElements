@@ -81,7 +81,7 @@
     async function submitElement() {
         toastr.info("Changing element..");
         const form = document.getElementById("elementForm");
-        if (!(await parseElementFormData(form))) {
+        if (!(await parseElementFormData(form, false))) {
             return;
         }
         await fetchPostJson(AUTH_URL + "auth/refresh");

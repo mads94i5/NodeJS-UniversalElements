@@ -2,7 +2,7 @@ import toastr from "toastr";
 import { fetchGetJson, fetchPostJson } from "./fetch";
 import { API_URL, AUTH_URL } from "./settings";
 
-export async function parseElementFormData(form) {
+export async function parseElementFormData(form, isNew = true) {
     let elements = [];
     try {
         await fetchPostJson(AUTH_URL + "auth/refresh");
@@ -46,7 +46,7 @@ export async function parseElementFormData(form) {
         return false;
     }
     for (const element of elements) {
-        if (Number(element.atomicNumber) === Number(parsedData.atomicNumber)) {
+        if (Number(element.atomicNumber) === Number(parsedData.atomicNumber) && isNew) {
             toastr.error("Atomic Number is already in use.");
             return false;
         }
